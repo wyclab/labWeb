@@ -156,28 +156,48 @@ img {
   -webkit-user-drag: none;
 }
 
+/* 图标字体（iconfont.css 中定义的是 .heoblogIcon，此处对齐模板使用的 .heofont 类名） */
+.heofont {
+  font-family: "heoblogIcon" !important;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== 悬浮胶囊导航 ===== */
 .nav {
-  display: flex;
-  width: 100%;
-  left: 0;
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
   justify-content: center;
-  flex-direction: column;
-  background: var(--heo-navbg);
-  align-items: center;
-  z-index: 2;
+  align-items: flex-start;
+  padding: 12px 0;
+  background: transparent;
+  z-index: 20;
+  pointer-events: none;
   transition: ease-in-out 0.3s;
-  backdrop-filter: blur(10px); /* 调整模糊效果的值 */
 }
 
 .nav-content {
-  max-width: 1200px;
-  width: 90%;
+  pointer-events: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 60px;
-  z-index: 2;
+  justify-content: space-between;
+  gap: 4px;
+  width: auto;
+  max-width: 92%;
+  height: 52px;
+  padding: 0 7px 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 6px 28px -10px rgba(31, 38, 66, 0.18), 0 1px 2px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   transition: ease-in-out 0.3s;
 }
 
@@ -214,14 +234,58 @@ img {
 a.site-logo {
   display: flex;
   align-items: center;
+  padding: 0 8px 0 6px;
 }
 
 img.site-logo-img {
-  width: 25px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
 .menu-list {
   display: none;
+}
+
+.nav-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* zhheo 风格：滑动高亮胶囊 */
+.nav-pill {
+  position: absolute;
+  top: 50%;
+  left: -4px;
+  width: 8px;
+  height: 32px;
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  border-radius: 999px;
+  background: #dbe9ff;
+  border: 1px solid rgba(2, 113, 228, 0.35);
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  transition: left 0.3s ease, width 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-center .nav-item {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  line-height: 1;
+  padding: 9px 12px;
+}
+
+.nav-center .nav-item:hover,
+.nav-center .nav-item.active {
+  background: transparent;
+  opacity: 1;
+  color: #0271e4;
 }
 
 .banner-img {
@@ -233,31 +297,47 @@ img.site-logo-img {
   transform: translate(0,  -7px);
 }
 
-span.site-name {
-  color: var(--heo-white);
-  font-size: 14px;
-  margin-left: 8px;
-}
-
 a.nav-item {
-  color: var(--heo-white);
-  opacity: 0.8;
-  transition: ease-in-out 0.3s;
+  color: var(--heo-fontcolor);
+  opacity: 0.78;
+  transition: ease-in-out 0.25s;
   font-size: 14px;
-  margin: 0 2px;
-  padding: 4px 8px;
-  border-radius: 16px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  white-space: nowrap;
 }
 
 a.nav-item:hover {
   opacity: 1;
-  background: var(--heo-card-bg);
+  background: rgba(0, 0, 0, 0.05);
   color: var(--heo-fontcolor);
+}
+
+a.nav-item.nav-cta {
+  opacity: 1;
+  background: var(--heo-main);
+  color: var(--heo-white);
+  font-weight: 500;
+  padding: 8px 20px;
+  margin-left: 4px;
+  box-shadow: 0 6px 14px -6px rgba(67, 117, 255, 0.65);
+}
+
+a.nav-item.nav-cta:hover {
+  background: var(--heo-main);
+  color: var(--heo-white);
+  filter: brightness(1.08);
+}
+
+a.nav-item.nav-ghost {
+  padding: 7px 10px;
 }
 
 .nav-right {
   display: flex;
   align-items: center;
+  gap: 2px;
+  margin-left: 4px;
 }
 
 .first-stack {
@@ -735,12 +815,15 @@ span.avatar-name {
     margin-bottom: 12px;
   }
 
-  .show-menu .nav {
-    background: var(--heo-fontcolor);
+  .nav-content {
+    max-width: calc(100% - 32px);
+    height: 48px;
+    padding: 0 6px 0 12px;
   }
 
-  .show-menu .nav-content {
-    background: var(--heo-fontcolor);
+  img.site-logo-img {
+    width: 26px;
+    height: 26px;
   }
 
   .nav-right .nav-item {
@@ -749,8 +832,18 @@ span.avatar-name {
 
   .nav-right .nav-menu {
     display: flex;
-    color: var(--heo-white);
-    padding: 8px 0 8px 8px;
+    color: var(--heo-fontcolor);
+    padding: 8px;
+    border-radius: 999px;
+    transition: ease-in-out 0.25s;
+  }
+
+  .nav-right .nav-menu .heofont {
+    font-size: 20px;
+  }
+
+  .nav-right .nav-menu:active {
+    background: rgba(0, 0, 0, 0.06);
   }
 
   .product-banner span.title {
@@ -762,32 +855,48 @@ span.avatar-name {
     display: flex;
     position: fixed;
     flex-direction: column;
-    top: 60px;
-    background: var(--heo-fontcolor);
-    width: 100%;
-    height: 0%;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    width: calc(100% - 32px);
+    max-height: 0;
+    padding: 0;
     z-index: 10;
     align-items: center;
     overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 16px 40px -16px rgba(31, 38, 66, 0.28);
     transition: ease-in-out 0.3s;
     opacity: 0;
   }
 
   .show-menu .menu-list {
-    height: 100%;
+    max-height: 80vh;
+    padding: 6px 0;
     opacity: 1;
   }
 
   .menu-list a.nav-item {
-    padding: 8px 8px;
-    font-size: 16px;
-    border-bottom: 1px solid #ffffff53;
-    width: 90%;
+    padding: 12px 8px;
+    font-size: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 0;
+    width: calc(100% - 32px);
     margin-left: 0;
+    text-align: center;
+    opacity: 0.9;
   }
 
-  .show-menu .menu-list a.nav-item {
-    padding: 12px 8px;
+  .menu-list a.nav-item:last-child {
+    border-bottom: none;
+  }
+
+  .menu-list a.nav-item:hover {
+    background: transparent;
+    color: var(--heo-main);
   }
   
   .banner-pic {

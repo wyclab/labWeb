@@ -29,6 +29,73 @@ document.querySelector('.menu-list').addEventListener('wheel',(e)=>{
   e.preventDefault()
 })
 
+// zhheo 风格导航滑动高亮胶囊
+var navCenter = document.getElementById('nav-center');
+var navPill = document.getElementById('nav-pill');
+var navItems = Array.prototype.slice.call(document.querySelectorAll('.nav-center .nav-item'));
+var navHovered = false;
+
+function moveNavPill(item) {
+  if (!item) {
+    navPill.style.opacity = '0';
+    return;
+  }
+  var centerRect = navCenter.getBoundingClientRect();
+  var rect = item.getBoundingClientRect();
+  navPill.style.left = (rect.left - centerRect.left) + 'px';
+  navPill.style.width = rect.width + 'px';
+  navPill.style.opacity = '1';
+}
+
+function setActiveNavItem(item) {
+  navItems.forEach(function (it) {
+    it.classList.toggle('active', it === item);
+  });
+}
+
+function currentSectionItem() {
+  var scrollLine = window.pageYOffset + 120;
+  var result = null;
+  navItems.forEach(function (item) {
+    var section = document.getElementById(item.getAttribute('data-section'));
+    if (section && section.offsetTop <= scrollLine) result = item;
+  });
+  return result;
+}
+
+function syncNavPill() {
+  if (navHovered) return;
+  var item = currentSectionItem();
+  setActiveNavItem(item);
+  moveNavPill(item);
+}
+
+navCenter.addEventListener('mouseenter', function () {
+  navHovered = true;
+});
+
+navCenter.addEventListener('mouseleave', function () {
+  navHovered = false;
+  syncNavPill();
+});
+
+navItems.forEach(function (item) {
+  item.addEventListener('mouseenter', function () {
+    moveNavPill(item);
+  });
+});
+
+window.addEventListener('scroll', function () {
+  window.requestAnimationFrame(syncNavPill);
+}, { passive: true });
+
+window.addEventListener('resize', function () {
+  if (!navHovered) syncNavPill();
+});
+
+window.addEventListener('load', syncNavPill);
+syncNavPill();
+
 var heoWeb = {
   //显示菜单
   showMenu: function() {

@@ -5,14 +5,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>使用HeoWeb主题的未命名站点站点</title>
+  <title>望云川</title>
   <link rel="stylesheet" href="/main.css">
   <link rel="icon" type="image/x-icon" href="/img/icon.webp">
   <link rel="apple-touch-icon" href="/img/icon.webp">
-  <meta name="apple-mobile-web-app-title" content="测试站点">
+  <meta name="apple-mobile-web-app-title" content="望云川">
   <link rel="bookmark" href="/img/icon.webp">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/icon.webp">
-  <meta name="description" content="寻找更贴近直觉的路径和方向，并用行动去突破，去改变，去创造。测试站点所有产品的导航网站。">
+  <meta name="description" content="见云之自在，知川之不息。">
   <meta name="theme-color" content="#1C1C1F">
   <link rel="stylesheet" href="https://cdn3.codesign.qq.com/icons/X2bzpZvRWkZkAaV/latest/iconfont.css">
   <script src="/js/jquery-3.7.1.min.js"></script>
@@ -22,23 +22,22 @@
   <div class="nav">
     <div class="nav-content">
       <div class="nav-left">
-        <a href="javascript:scrollToTopWithAnimation()" class="site-logo">
-          <img src="/img/icon.webp" alt="logo" class="site-logo-img">
-          <span class="site-name">测试站点</span>
+        <a href="javascript:scrollToTopWithAnimation()" class="site-logo" title="望云川">
+          <img src="/img/icon.webp" alt="望云川" class="site-logo-img">
         </a>
       </div>
-      <div class="nav-center">
-        <a href="javascript:heoWeb.scrollTo('应用');" class="nav-item">应用</a>
-        <a href="javascript:heoWeb.scrollTo('媒体');" class="nav-item">媒体</a>
-        <a href="javascript:heoWeb.scrollTo('服务');" class="nav-item">服务</a>
-        <a href="javascript:heoWeb.scrollTo('主题');" class="nav-item">主题</a>
-        <a href="javascript:heoWeb.scrollTo('表情');" class="nav-item">表情</a>
-        <a href="javascript:heoWeb.scrollTo('项目');" class="nav-item">项目</a>
-        <a href="javascript:heoWeb.scrollTo('更多');" class="nav-item">更多</a>
+      <div class="nav-center" id="nav-center">
+        <div class="nav-pill" id="nav-pill" aria-hidden="true"></div>
+        <a href="javascript:heoWeb.scrollTo('应用');" class="nav-item" data-section="应用">应用</a>
+        <a href="javascript:heoWeb.scrollTo('媒体');" class="nav-item" data-section="媒体">媒体</a>
+        <a href="javascript:heoWeb.scrollTo('服务');" class="nav-item" data-section="服务">服务</a>
+        <a href="javascript:heoWeb.scrollTo('主题');" class="nav-item" data-section="主题">主题</a>
+        <a href="javascript:heoWeb.scrollTo('表情');" class="nav-item" data-section="表情">表情</a>
+        <a href="javascript:heoWeb.scrollTo('项目');" class="nav-item" data-section="项目">项目</a>
       </div>
       <div class="nav-right">
-        <a href="https://blog.zhheo.com/" class="nav-item" target="_blank">博客</a>
-        <a href="https://plog.zhheo.com/" class="nav-item" target="_blank">图集</a>
+        <a href="https://plog.zhheo.com/" class="nav-item nav-ghost" target="_blank">图集</a>
+        <a href="https://blog.zhheo.com/" class="nav-item nav-cta" target="_blank">博客</a>
         <a class="nav-menu" id="nav-menu"><span class="heofont icon-menu-fill"></span></a>
       </div>
     </div>
@@ -52,7 +51,6 @@
     <a href="javascript:heoWeb.scrollTo('主题');" class="nav-item">主题</a>
     <a href="javascript:heoWeb.scrollTo('表情');" class="nav-item">表情</a>
     <a href="javascript:heoWeb.scrollTo('项目');" class="nav-item">项目</a>
-    <a href="javascript:heoWeb.scrollTo('更多');" class="nav-item">更多</a>
   </div>
   <!-- <div class="nav-banner">
     <a class="nav-banner-text" href="https://blog.zhheo.com/p/671f98c8.html" target="_blank">敲木鱼 现已登录 App Store <span
@@ -62,12 +60,10 @@
   <div class="first-stack need-padding">
     <div class="left-Introduce">
       <div class="title-group">
-        <span class="title">测试用的站点</span>
-        <span class="title">可以改内容</span></span>
+        <span class="title">望云川</span>
       </div>
       <div class="discription">
-        <span class="discription-text">让设计师主导<span class="inline-word">产品，</span><br>来构建令人难忘的<span
-            class="inline-word">体验。</span></span>
+        <span class="discription-text">见云之自在<span class="inline-word">，</span><br>知川之不息<span class="inline-word">。</span></span>
       </div>
       <div class="first-stack-links">
         <a href="https://blog.zhheo.com/about/" class="about-button" target="_blank">了解更多</a>
@@ -88,8 +84,8 @@
   <div class="avatar-discription">
     <span
       class="avatar-discription-text">“大多数产品是一群只看重利益和效益的企业家配合一群只需要完成指标的员工所完成的。往往优先考虑的是盈利和营销。而软件体验这种只能从侧面去量化的指标很难作为KPI出现。只知道完成任务的员工自然不会去认真打磨细节，追求好的产品了。然而在这个互联网需求接近饱和的时代，产品开发其实应该更多地去关注人，人机交互体验，注重软件的体验，研究用户的使用心理、使用动机以及目标完成流程的状态变化。这就是我所追求的。”</span>
-    <img class="avatar-image" src="./img/avatar.jpg">
-    <span class="avatar-name">测试站点</span>
+    <img class="avatar-image" src="/img/avatar.JPG">
+    <span class="avatar-name">望云川</span>
     <span class="avatar-title">产品设计师、独立开发者、设计与科技领域自媒体博主</span>
   </div>
 
@@ -740,9 +736,8 @@
 
   <div class="footer">
     <div class="footer-content need-padding">
-      <span class="info">Copyright © 2022-2023 张洪Heo 保留所有权利。</span>
-      <div class="info-group"><a class="info" href="https://beian.miit.gov.cn/" target="_blank">京ICP备19051325号</a><a
-          class="info" href="https://github.com/zhheo/HeoWeb" target="_blank">主题：HeoWeb</a></div>
+      <span class="info">Copyright © 2026 望云川 保留所有权利。</span>
+      <div class="info-group"><a class="info" href="https://github.com/zhheo/HeoWeb" target="_blank">主题：HeoWeb</a></div>
     </div>
   </div>
 </body>
