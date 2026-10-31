@@ -135,8 +135,7 @@ var heoWeb = {
 }
 
 //滚动页面动画
-function scrollToTopWithAnimation() {
-  const duration = 600; // in milliseconds
+function scrollToTopWithAnimation() {  const duration = 600; // in milliseconds
   const startPosition = window.pageYOffset;
   const distance = -window.pageYOffset;
   let startTime = null;
@@ -162,3 +161,99 @@ function scrollToTopWithAnimation() {
 
   requestAnimationFrame(animation);
 }
+
+/* ===== 明暗主题 =====
+ * 默认按时间自动切换：07:00-18:59 白天，其余时间深夜。
+ * 点击图标手动切换后记住选择；当手动选择与自动结果一致时自动回归「跟随时间」。
+ */
+var heoTheme = (function () {
+  var STORAGE_KEY = 'heo-theme-mode';
+  var DAY_START_HOUR = 7;
+  var NIGHT_START_HOUR = 19;
+  var CHECK_INTERVAL = 60 * 1000;
+  var button = document.getElementById('theme-toggle');
+  var meta = document.getElementById('theme-color');
+
+  function autoTheme() {
+    var hour = new Date().getHours();
+    return (hour >= DAY_START_HOUR && hour < NIGHT_START_HOUR) ? 'light' : 'dark';
+  }
+
+  function getPref() {
+    try {
+      var value = localStorage.getItem(STORAGE_KEY);
+      return (value === 'light' || value === 'dark') ? value : 'auto';
+    } catch (e) {
+      return 'auto';
+    }
+  }
+
+  function setPref(value) {
+    try {
+      if (value === 'auto') {
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        localStorage.setItem(STORAGE_KEY, value);
+      }
+    } catch (e) { }
+  }
+
+  function current() {
+    var pref = getPref();
+    return pref === 'auto' ? autoTheme() : pref;
+  }
+
+  function render(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute('data-theme-mode', getPref());
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? '#1C1C1F' : '#F5F5F7');
+    }
+    if (button) {
+      var isDark = theme === 'dark';
+      button.setAttribute('aria-label', isDark ? '切换为浅色模式' : '切换为深色模式');
+      button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      button.setAttribute('title', (isDark ? '深色模式' : '浅色模式') +
+        (getPref() === 'auto' ? ' · 跟随时间自动切换' : ' · 已手动切换') +
+        '，点击切换');
+    }
+  }
+
+  function apply() {
+    render(current());
+  }
+
+  function toggle() {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    // 手动选择恰好等于自动结果时，不必记住，继续跟随时间
+    setPref(next === autoTheme() ? 'auto' : next);
+    apply();
+  }
+
+  // 跨过时间分界（含标签页切回前台）时重新判断
+  function tick() {
+    var pref = getPref();
+    if (pref !== 'auto' && pref === autoTheme()) {
+      setPref('auto');
+    }
+    apply();
+  }
+
+  if (button) {
+    button.addEventListener('click', toggle);
+  }
+  setInterval(tick, CHECK_INTERVAL);
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) tick();
+  });
+  apply();
+
+  return {
+    toggle: toggle,
+    set: function (mode) {
+      setPref(mode === 'light' || mode === 'dark' ? mode : 'auto');
+      apply();
+    },
+    get: current
+  };
+})();

@@ -13,7 +13,21 @@
   <link rel="bookmark" href="/img/icon.webp">
   <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/icon.webp">
   <meta name="description" content="见云之自在，知川之不息。">
-  <meta name="theme-color" content="#1C1C1F">
+  <meta name="theme-color" id="theme-color" content="#1C1C1F">
+  <script>
+    // 提前确定主题，避免刷新时白屏闪一下
+    (function () {
+      var mode = 'auto';
+      try { mode = localStorage.getItem('heo-theme-mode') || 'auto'; } catch (e) { }
+      var hour = new Date().getHours();
+      var auto = (hour >= 7 && hour < 19) ? 'light' : 'dark';
+      var resolved = (mode === 'light' || mode === 'dark') ? mode : auto;
+      document.documentElement.setAttribute('data-theme', resolved);
+      document.documentElement.setAttribute('data-theme-mode', mode);
+      var meta = document.getElementById('theme-color');
+      if (meta) meta.setAttribute('content', resolved === 'dark' ? '#1C1C1F' : '#F5F5F7');
+    })();
+  </script>
   <link rel="stylesheet" href="https://cdn3.codesign.qq.com/icons/X2bzpZvRWkZkAaV/latest/iconfont.css">
   <script src="/js/jquery-3.7.1.min.js"></script>
 </head>
@@ -36,6 +50,12 @@
         <a href="javascript:heoWeb.scrollTo('项目');" class="nav-item" data-section="项目">项目</a>
       </div>
       <div class="nav-right">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深色模式">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="9.2" fill="none" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M12 2.8a9.2 9.2 0 0 0 0 18.4z" fill="currentColor"></path>
+          </svg>
+        </button>
         <a href="https://plog.zhheo.com/" class="nav-item nav-ghost" target="_blank">图集</a>
         <a href="https://blog.zhheo.com/" class="nav-item nav-cta" target="_blank">博客</a>
         <a class="nav-menu" id="nav-menu"><span class="heofont icon-menu-fill"></span></a>
