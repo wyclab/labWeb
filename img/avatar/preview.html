@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>望云川 · 头像方案</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #0c0d10; color: #e9e9ee; padding: 48px 40px 90px;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  h1 { font-size: 22px; font-weight: 600; }
+  .sub { margin-top: 10px; font-size: 13px; line-height: 1.8; color: #8b8b96; }
+  .sub code { font-family: ui-monospace, Menlo, monospace; font-size: 12px; background: #1a1b20; padding: 1px 5px; border-radius: 4px; color: #b9b9c6; }
+  .sec { margin: 42px 0 16px; font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; color: #5f6068; }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+  .card { background: #15161a; border: 1px solid #22232a; border-radius: 18px; padding: 26px 22px 20px; text-align: center; }
+  .card img { width: 180px; height: 180px; border-radius: 50%; display: block; margin: 0 auto; }
+  .card .n { margin-top: 18px; font-size: 14px; font-weight: 550; }
+  .card .d { margin-top: 6px; font-size: 11.5px; line-height: 1.65; color: #74747f; }
+
+  .row { display: flex; align-items: flex-end; gap: 30px; flex-wrap: wrap; }
+  .it { display: flex; flex-direction: column; align-items: center; gap: 9px; }
+  .it span { font-size: 10.5px; color: #5f6068; }
+  .av60 { width: 60px; height: 60px; border-radius: 50%; border: 4px solid #1d1e24; }
+  .av40 { width: 40px; height: 40px; border-radius: 50%; border: 3px solid #1d1e24; }
+  .av32 { width: 32px; height: 32px; border-radius: 50%; border: 2px solid #1d1e24; }
+
+  .lightbox { background: #f6f7f9; border-radius: 18px; padding: 26px; }
+  .lightbox .it span { color: #8a8b94; }
+  .lightbox .av60 { border-color: #fff; }
+  .lightbox .av40, .lightbox .av32 { border-color: #fff; }
+
+  .note { margin-top: 34px; background: #121317; border: 1px solid #22232a; border-radius: 14px; padding: 18px 20px; font-size: 12.5px; line-height: 1.95; color: #8e8f9c; }
+  .note b { color: #d8d8e2; font-weight: 550; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>望云川 · 头像方案</h1>
+  <p class="sub">
+    共用规范：<code>viewBox 0 0 64 64</code> · 描边 <code>3.4</code> · 圆头端点 · 白色线稿 · 135° 渐变
+    <code>#4584FF → #CF0DB9</code>。实际显示为 60px 圆形（<code>border-radius:50%</code> + 4px 描边），
+    所以构图全部收在圆内。
+  </p>
+
+  <div class="sec">四个方向 · 180px</div>
+  <div class="grid">
+    <div class="card">
+      <img src="a1-云水.svg" alt="云水">
+      <div class="n">A1 云 + 水</div>
+      <div class="d">闭合云轮廓压在水波上。<br>最稳、最干净，云和水各司其职。</div>
+    </div>
+    <div class="card">
+      <img src="a2-云线.svg" alt="云线">
+      <div class="n">A2 云 + 水（线性）</div>
+      <div class="d">三凸云 + 缓浪，与站点图标集<br>同一套线条语言。</div>
+    </div>
+    <div class="card">
+      <img src="a3-云字.svg" alt="云字">
+      <div class="n">A3 「云」字标 ✓ 已启用</div>
+      <div class="d">取名字里的「云」做几何字标。<br>识别度最高，偏 logo 味。</div>
+    </div>
+    <div class="card">
+      <img src="a4-单云.svg" alt="单云">
+      <div class="n">A4 单云</div>
+      <div class="d">只留一朵云，元素最少。<br>但语义也最薄。</div>
+    </div>
+  </div>
+
+  <div class="sec">真实尺寸 · 60 / 40 / 32px 圆形裁切</div>
+  <div class="row">
+    <div class="it"><img class="av60" src="a1-云水.svg"><span>A1 60px</span></div>
+    <div class="it"><img class="av40" src="a1-云水.svg"><span>40</span></div>
+    <div class="it"><img class="av32" src="a1-云水.svg"><span>32</span></div>
+    <div class="it" style="margin-left:24px"><img class="av60" src="a2-云线.svg"><span>A2 60px</span></div>
+    <div class="it"><img class="av40" src="a2-云线.svg"><span>40</span></div>
+    <div class="it"><img class="av32" src="a2-云线.svg"><span>32</span></div>
+    <div class="it" style="margin-left:24px"><img class="av60" src="a3-云字.svg"><span>A3 60px</span></div>
+    <div class="it"><img class="av40" src="a3-云字.svg"><span>40</span></div>
+    <div class="it"><img class="av32" src="a3-云字.svg"><span>32</span></div>
+    <div class="it" style="margin-left:24px"><img class="av60" src="a4-单云.svg"><span>A4 60px</span></div>
+    <div class="it"><img class="av40" src="a4-单云.svg"><span>40</span></div>
+    <div class="it"><img class="av32" src="a4-单云.svg"><span>32</span></div>
+  </div>
+
+  <div class="sec">浅色主题下</div>
+  <div class="lightbox">
+    <div class="row">
+      <div class="it"><img class="av60" src="a1-云水.svg"><span>A1</span></div>
+      <div class="it"><img class="av60" src="a2-云线.svg"><span>A2</span></div>
+      <div class="it"><img class="av60" src="a3-云字.svg"><span>A3</span></div>
+      <div class="it"><img class="av60" src="a4-单云.svg"><span>A4</span></div>
+    </div>
+  </div>
+
+  <div class="note">
+    <b>淘汰掉的方向</b>（都已实测不成立）：<br>
+    · 云 + 三竖笔（想同时表达「川」字）→ 视觉上直接变成<b>下雨</b>；<br>
+    · 峰 + 云带 + 水 三层同框 → 60px 下糊成一团，三角形还会读成字母 <b>A</b> 或帐篷；<br>
+    · 「云」字直接照字形摹写 → 底部「厶」偏长，远看像 <b>Z</b>，只有 A3 这种刻意收紧的版本还能读。
+  </div>
+</div>
+</body>
+</html>
