@@ -738,6 +738,30 @@ a.second-link:hover {
   margin: auto;
 }
 
+/* 博客首页截图 banner：截图随内容流排列，尺寸自适应 */
+.product-banner.banner-shot {
+  display: block;
+  min-height: auto;
+  padding: 84px 0 40px;
+}
+
+.banner-shot .banner-info,
+.banner-shot .banner-pic {
+  flex: 0 0 auto;
+}
+
+.banner-shot .banner-pic {
+  position: static;
+  height: auto;
+  width: min(1000px, 100%);
+  margin: 24px auto 0;
+}
+
+.banner-shot .banner-pic-img {
+  width: 100%;
+  max-width: none;
+}
+
 .inline-word {
   word-break: keep-all;
   white-space: nowrap;

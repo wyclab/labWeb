@@ -1,13 +1,15 @@
-// 添加视差效果
-var image = document.getElementsByClassName('banner-pic-img');
-new simpleParallax(image, {
-  orientation: 'up',
-  scale: 1.2,
-  delay: 2,
-  transition: 'cubic-bezier(0,0,0,1)',
-  maxTransition: 50,
-  overflow: true
-});
+// 添加视差效果（博客截图 banner 里的整张截图不参与，避免底部渐隐被裁切）
+var image = document.querySelectorAll('.product-banner:not(.banner-shot) .banner-pic-img');
+if (image.length) {
+    new simpleParallax(image, {
+        orientation: 'up',
+        scale: 1.2,
+        delay: 2,
+        transition: 'cubic-bezier(0,0,0,1)',
+        maxTransition: 50,
+        overflow: true
+    });
+}
 
 // 添加菜单点击事件
 var menuButton = document.getElementById("nav-menu");
