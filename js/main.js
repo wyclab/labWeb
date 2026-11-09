@@ -1,3 +1,11 @@
+// 隐藏的草稿区块（#draft-hidden / .draft-hidden 内的图片）只写了 data-draft-src，
+// 不可见时不发请求，省流量；日后取消隐藏并刷新，这里会自动把 src 补回去。
+document.querySelectorAll('img[data-draft-src]').forEach(function (img) {
+    if (img.getClientRects().length) {
+        img.src = img.getAttribute('data-draft-src');
+    }
+});
+
 // 添加视差效果（博客截图 banner 里的整张截图不参与，避免底部渐隐被裁切；隐藏的草稿 banner 也不参与，避免零尺寸元素）
 var image = document.querySelectorAll('.product-banner:not(.banner-shot):not(.draft-hidden) .banner-pic-img');
 if (image.length) {
