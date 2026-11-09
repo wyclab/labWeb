@@ -740,7 +740,6 @@ a.second-link:hover {
 
 /* 博客首页截图 banner：截图随内容流排列，尺寸自适应 */
 .product-banner.banner-shot {
-  display: block;
   min-height: auto;
   padding: 84px 0 40px;
 }
