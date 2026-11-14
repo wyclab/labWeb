@@ -780,6 +780,30 @@ a.second-link:hover {
   line-height: 1;
 }
 
+/* 运行监控：心跳图标（悬浮时轻微搏动） */
+.icon-heartbeat {
+  display: block;
+  transform-origin: 50% 50%;
+  overflow: visible;
+}
+
+a.about-button.social-button:hover .icon-heartbeat {
+  animation: heartbeat-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes heartbeat-pulse {
+  0%, 100% { transform: scale(1); }
+  22% { transform: scale(1.16); }
+  38% { transform: scale(0.97); }
+  54% { transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.about-button.social-button:hover .icon-heartbeat {
+    animation: none;
+  }
+}
+
 .special-card {
   background: #131202;
   width: 90%;
