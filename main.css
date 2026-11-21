@@ -285,11 +285,9 @@ a.site-logo {
 }
 
 img.site-logo-img {
-  width: 30px;
+  width: auto;
   height: 30px;
-  border-radius: 50%;
-  object-fit: cover;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  object-fit: contain;
 }
 
 .menu-list {
@@ -925,7 +923,6 @@ a.about-button.social-button:hover .icon-heartbeat {
   }
 
   img.site-logo-img {
-    width: 26px;
     height: 26px;
   }
 
